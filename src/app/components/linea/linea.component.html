@@ -1,23 +1,33 @@
-<div class="flex">
-    <div class="flex-item">
-        <div style="display: block;">
-            <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+<div class="row"></div>
+
+<div class="container-5">
+
+    <div class="flex">
+        <div class="flex-item ">
+            <div style="display: block;">
+                <canvas baseChart width="50" height="15" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+
+        <div class="flex-item main-container">
+            <table class="table table-responsive table-condensed ">
+
+                <tr>
+                    <th *ngFor="let label of lineChartLabels">{{label}}</th>
+                </tr>
+                <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
+                    <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+                </tr>
+            </table>
+            <hr>
+
+            <button mat-button mat-raised-button class="btn btn-primary  btn-margin" (click)="randomize()">Randomize</button>
+            <button mat-button mat-raised-button class="btn btn-success  btn-margin" (click)="pushOne()">Push</button>
+            <button mat-button mat-raised-button class="btn btn-warning btn-margin" (click)="changeColor()">Recolor</button>
+            <button mat-button mat-raised-button class="btn btn-dark  btn-margin" (click)="hideOne()">Toggle Series B</button>
+            <button mat-button mat-raised-button class="btn btn-info  btn-margin" (click)="changeLabel()">Change Label</button>
         </div>
     </div>
-    <div class="flex-item">
-        <table class="table table-responsive table-condensed">
-            <tr>
-                <th *ngFor="let label of lineChartLabels">{{label}}</th>
-            </tr>
-            <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
-                <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-            </tr>
-        </table>
-        <button mat-button mat-raised-button color="primary" (click)="randomize()">Randomize</button>
-        <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
-        <button mat-button mat-raised-button color="primary" (click)="changeColor()">Recolor</button>
-        <button mat-button mat-raised-button color="primary" (click)="hideOne()">Toggle Series B</button>
-        <button mat-button mat-raised-button color="primary" (click)="changeLabel()">Change Label</button>
-    </div>
+
 </div>
